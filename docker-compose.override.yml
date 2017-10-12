@@ -1,0 +1,24 @@
+---
+version: "2"
+services:
+  redis:
+    image: redis
+  php:
+    links:
+       - db:docker.xyz-db.dev
+       - redis:docker.xyz-redis.dev
+       - mailcatcher:docker.mailcatcher.dev
+    volumes:
+    - ../:/var/www/html
+#    ports:
+#          - "80:80"
+  mailcatcher:
+    image:
+      schickling/mailcatcher
+  db:
+    image: mariadb:10.0
+#      volumes:
+#      - /ssd/docker/xyz-mysql:/var/lib/mysql
+volumes:
+#rename it to reset solr
+  zdata:

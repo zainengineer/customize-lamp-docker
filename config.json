@@ -1,0 +1,8 @@
+{
+  "from": "php:5.6-apache",
+  "ip_map": {
+    "xyzdocker_db_1": "docker.xyz-db.dev",
+    "xyzdocker_php_1": "local.xyzg.dev",
+    "xyzdocker_redis_1": "docker.xyz-redis.dev"
+  }
+}

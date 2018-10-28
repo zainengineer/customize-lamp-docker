@@ -12,3 +12,7 @@ RUN docker-php-ext-enable xdebug
 ADD LAMP-docker/util/resources/xdebug.ini /usr/local/etc/php/conf.d/20-xdebug.ini
 RUN sed -e "s/%XDEBUG_REMOTE_HOST%/`/sbin/ip route|awk '/default/ { print $3 }'`/" \
         -i /usr/local/etc/php/conf.d/20-xdebug.ini
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+RUN apt-get update
+RUN apt-get -y install git zip unzip

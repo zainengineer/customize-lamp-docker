@@ -5,11 +5,13 @@ services:
     image: redis
   php:
     links:
-       - db:docker.xyz-db.dev
-       - redis:docker.xyz-redis.dev
+       - db:docker.toggl-db.dev
+       - redis:docker.toggl-redis.dev
        - mailcatcher:docker.mailcatcher.dev
     volumes:
     - ../:/var/www/html
+    environment:
+      APACHE_DOCUMENT_ROOT: /var/www/html/public
 #    ports:
 #          - "80:80"
   mailcatcher:
